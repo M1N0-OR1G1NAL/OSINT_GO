@@ -16,5 +16,10 @@ enum OsintCapability: String, CaseIterable {
     case httpBanner = "HTTP Banner"
     case emailValidation = "Email Validace"
     case usernameCheck = "Username Check"
+    case phoneValidation = "Validace telefonu"
+    case phoneCarrier = "Operátor telefonu"
     case companyLookup = "Firma"
+    case icoLookup = "IČO Lookup"
+    case personSearch = "Vyhledávání osoby"
+    case socialMediaSearch = "Social Media"
 }

@@ -7,6 +7,7 @@
 
 
 import Foundation
+import SwiftUI
 
 struct DNSModule: OsintModule {
     let name = "DNS Lookup"

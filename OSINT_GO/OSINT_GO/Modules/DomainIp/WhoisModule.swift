@@ -7,6 +7,7 @@
 
 
 import Foundation
+import SwiftUI
 
 struct WhoisModule: OsintModule {
     let name = "WHOIS Lookup"
