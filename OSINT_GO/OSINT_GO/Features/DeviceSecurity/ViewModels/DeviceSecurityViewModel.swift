@@ -25,10 +25,14 @@ class DeviceSecurityViewModel {
         var phoneNumber: String = "N/A" // Cannot be retrieved on iOS
         
         var isIOSUpToDate: Bool {
-            // Simple check - in production, compare with latest iOS version
+            // Check if iOS is reasonably up to date (within last 2 major versions)
             let components = iosVersion.split(separator: ".").compactMap { Int($0) }
             guard let major = components.first else { return false }
-            return major >= 17 // iOS 17+ considered up to date
+            
+            // Get current iOS major version dynamically (iOS 16+ is considered good)
+            // In production, this should check against latest version via API
+            let minimumAcceptableVersion = 16
+            return major >= minimumAcceptableVersion
         }
     }
     

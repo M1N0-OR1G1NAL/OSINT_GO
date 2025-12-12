@@ -96,11 +96,11 @@ struct GlassModuleRow: View {
     let module: OsintModule
     @Binding var selectedTarget: Target?
     @State private var isPressed = false
-    @State private var showingModuleRun = false
+    @State private var showingTargetPicker = false
     
     var body: some View {
         Button {
-            showingModuleRun = true
+            showingTargetPicker = true
         } label: {
             HStack {
                 Image(systemName: module.iconName)
@@ -138,8 +138,10 @@ struct GlassModuleRow: View {
             }, perform: {})
         }
         .buttonStyle(.plain)
-        .sheet(isPresented: $showingModuleRun) {
-            ModuleRunView(module: module)
+        .alert("Select Target", isPresented: $showingTargetPicker) {
+            Button("Cancel", role: .cancel) { }
+        } message: {
+            Text("Please create a target in an investigation first to run this module.")
         }
     }
 }

@@ -15,8 +15,8 @@ struct GraphTabView: View {
         VStack {
             if investigation.targets.isEmpty {
                 EmptyStateView(
-                    title: "Žádný graf",
-                    message: "Přidej targets a spusť OSINT moduly pro vizualizaci vztahů",
+                    title: "no_graph".localized,
+                    message: "add_targets_message".localized,
                     icon: "chart.xyaxis.line"
                 )
             } else {

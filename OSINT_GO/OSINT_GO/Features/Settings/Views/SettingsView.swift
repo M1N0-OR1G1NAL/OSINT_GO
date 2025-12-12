@@ -8,38 +8,6 @@
 
 import SwiftUI
 
-enum AppLanguage: String, CaseIterable {
-    case czech = "cs"
-    case english = "en"
-    case slovak = "sk"
-    case russian = "ru"
-    case german = "de"
-    
-    var displayName: String {
-        switch self {
-        case .czech: return "Čeština"
-        case .english: return "English"
-        case .slovak: return "Slovenčina"
-        case .russian: return "Русский"
-        case .german: return "Deutsch"
-        }
-    }
-}
-
-enum AppAppearance: String, CaseIterable {
-    case system = "system"
-    case light = "light"
-    case dark = "dark"
-    
-    var displayName: String {
-        switch self {
-        case .system: return "System"
-        case .light: return "Light"
-        case .dark: return "Dark"
-        }
-    }
-}
-
 struct SettingsView: View {
     @AppStorage("legalModeEnabled") private var legalModeEnabled = true
     @AppStorage("telemetryEnabled") private var telemetryEnabled = false
@@ -61,6 +29,12 @@ struct SettingsView: View {
                     Picker("Language", selection: $appLanguage) {
                         ForEach(AppLanguage.allCases, id: \.rawValue) { lang in
                             Text(lang.displayName).tag(lang.rawValue)
+                        }
+                    }
+                    .onChange(of: appLanguage) { _, newValue in
+                        // Sync with LocalizationManager
+                        if let language = AppLanguage(rawValue: newValue) {
+                            LocalizationManager.shared.currentLanguage = language
                         }
                     }
                     

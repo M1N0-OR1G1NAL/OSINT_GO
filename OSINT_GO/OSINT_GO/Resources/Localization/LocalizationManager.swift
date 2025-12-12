@@ -8,6 +8,42 @@
 
 import SwiftUI
 
+// MARK: - Shared Enums
+
+enum AppLanguage: String, CaseIterable {
+    case czech = "cs"
+    case english = "en"
+    case slovak = "sk"
+    case russian = "ru"
+    case german = "de"
+    
+    var displayName: String {
+        switch self {
+        case .czech: return "Čeština"
+        case .english: return "English"
+        case .slovak: return "Slovenčina"
+        case .russian: return "Русский"
+        case .german: return "Deutsch"
+        }
+    }
+}
+
+enum AppAppearance: String, CaseIterable {
+    case system = "system"
+    case light = "light"
+    case dark = "dark"
+    
+    var displayName: String {
+        switch self {
+        case .system: return "System"
+        case .light: return "Light"
+        case .dark: return "Dark"
+        }
+    }
+}
+
+// MARK: - Localization Manager
+
 @Observable
 class LocalizationManager {
     static let shared = LocalizationManager()
@@ -65,6 +101,8 @@ struct LocalizedStrings {
         "graph": "Graph",
         "results": "Results",
         "notes": "Notes",
+        "no_graph": "No Graph",
+        "add_targets_message": "Add targets and run OSINT modules to visualize relationships",
         "device_security": "Device Security",
         "security_checks": "Security Checks",
         "recommendations": "Recommendations",
@@ -94,6 +132,8 @@ struct LocalizedStrings {
         "graph": "Graf",
         "results": "Výsledky",
         "notes": "Poznámky",
+        "no_graph": "Žádný graf",
+        "add_targets_message": "Přidej targets a spusť OSINT moduly pro vizualizaci vztahů",
         "device_security": "Zabezpečení zařízení",
         "security_checks": "Bezpečnostní kontroly",
         "recommendations": "Doporučení",
