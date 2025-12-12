@@ -93,7 +93,7 @@ struct UsernameModule: OsintModule {
             var request = URLRequest(url: targetURL)
             request.httpMethod = "HEAD"
             request.timeoutInterval = 10
-            request.setValue("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)", forHTTPHeaderField: "User-Agent")
+            request.setValue("Atlas-OSINT/1.0", forHTTPHeaderField: "User-Agent")
             
             let (_, response) = try await URLSession.shared.data(for: request)
             

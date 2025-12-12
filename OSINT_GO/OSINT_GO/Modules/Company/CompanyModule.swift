@@ -103,7 +103,7 @@ struct CompanyModule: OsintModule {
             return [
                 "IČO": ico,
                 "poznámka": "ARES nedostupné, zkuste Justice.cz nebo OR.cz",
-                "justice_url": "https://or.justice.cz/ias/ui/rejstrik-$firma?ico=\(ico)",
+                "justice_url": "https://or.justice.cz/ias/ui/rejstrik?ico=\(ico)",
                 "orcz_url": "https://www.or.cz/\(ico)"
             ]
         }
@@ -112,7 +112,7 @@ struct CompanyModule: OsintModule {
     private func generateICOSearchQueries(_ ico: String) -> [String: String] {
         return [
             "ARES": "https://ares.gov.cz/ekonomicke-subjekty-v-be/rest/ekonomicke-subjekty/\(ico)",
-            "Justice.cz": "https://or.justice.cz/ias/ui/rejstrik-$firma?ico=\(ico)",
+            "Justice.cz": "https://or.justice.cz/ias/ui/rejstrik?ico=\(ico)",
             "OR.cz": "https://www.or.cz/\(ico)",
             "Google": "https://www.google.com/search?q=IČO+\(ico)",
             "Firmy.cz": "https://www.firmy.cz/detail/\(ico)",
@@ -125,7 +125,7 @@ struct CompanyModule: OsintModule {
         
         return [
             "Google": "https://www.google.com/search?q=\"\(encoded)\"",
-            "Justice.cz": "https://or.justice.cz/ias/ui/rejstrik-$firma?nazev=\"\(encoded)\"",
+            "Justice.cz": "https://or.justice.cz/ias/ui/rejstrik?nazev=\"\(encoded)\"",
             "Firmy.cz": "https://www.firmy.cz/search?q=\"\(encoded)\"",
             "LinkedIn": "https://www.linkedin.com/search/results/companies/?keywords=\(encoded)",
             "Google (sociální sítě)": "https://www.google.com/search?q=site:facebook.com+OR+site:linkedin.com+\"\(encoded)\"",

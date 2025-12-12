@@ -13,6 +13,9 @@ struct PhoneModule: OsintModule {
     let capabilities: [OsintCapability] = [.phoneValidation, .phoneCarrier]
     let supportedTypes: [TargetType] = [.phone]
     
+    // Czech mobile prefixes
+    private let czechMobilePrefixes = ["42060", "42070", "42072", "42073", "42077", "42079"]
+    
     func execute(on target: Target, context: OsintContext) async throws -> ModuleResult {
         var details: [String: Any] = [:]
         var riskScore: Double = 0.0
@@ -86,9 +89,7 @@ struct PhoneModule: OsintModule {
         // Czech mobile prefixes: 60x, 70x, 72x, 73x, 77x, 79x
         if phone.count >= 5 {
             let prefix = String(phone.prefix(5))
-            if prefix.hasPrefix("42060") || prefix.hasPrefix("42070") || 
-               prefix.hasPrefix("42072") || prefix.hasPrefix("42073") ||
-               prefix.hasPrefix("42077") || prefix.hasPrefix("42079") {
+            if czechMobilePrefixes.contains(where: { prefix.hasPrefix($0) }) {
                 return "Mobil"
             }
         }

@@ -23,5 +23,5 @@ protocol OsintModule {
 extension OsintModule {
     var iconName: String { "magnifyingglass" }
     var color: Color { .blue }
-    var description: String { "" }
+    var description: String { "OSINT module for \(name)" }
 }
