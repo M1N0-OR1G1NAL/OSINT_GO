@@ -17,6 +17,10 @@ struct DeviceSecurityView: View {
                 VStack(spacing: 24) {
                     SecurityStatusCard(status: viewModel.status, score: viewModel.score)
                     
+                    SectionHeaderView(title: "Device Information", icon: "iphone")
+                    
+                    DeviceInfoCard(deviceInfo: viewModel.deviceInfo)
+                    
                     SectionHeaderView(title: "Security Checks", icon: "checkmark.shield")
                     
                     SecurityChecksGrid(checks: viewModel.checks)
@@ -66,6 +70,45 @@ struct SecurityStatusCard: View {
     }
 }
 
+struct DeviceInfoCard: View {
+    let deviceInfo: DeviceSecurityViewModel.DeviceInfo
+    
+    var body: some View {
+        VStack(spacing: 12) {
+            InfoRow(icon: "iphone", label: "Device Model", value: deviceInfo.deviceModel)
+            InfoRow(icon: "apple.logo", label: "iOS Version", value: deviceInfo.iosVersion)
+            InfoRow(icon: "person.text.rectangle", label: "Device Name", value: deviceInfo.deviceName)
+            InfoRow(icon: "phone.fill", label: "Phone Number", value: deviceInfo.phoneNumber)
+        }
+        .padding()
+        .background(.ultraThinMaterial)
+        .clipShape(RoundedRectangle(cornerRadius: 16))
+    }
+}
+
+struct InfoRow: View {
+    let icon: String
+    let label: String
+    let value: String
+    
+    var body: some View {
+        HStack {
+            Image(systemName: icon)
+                .foregroundStyle(.blue)
+                .frame(width: 30)
+            
+            Text(label)
+                .font(.subheadline)
+                .foregroundStyle(.secondary)
+            
+            Spacer()
+            
+            Text(value)
+                .font(.subheadline.bold())
+        }
+    }
+}
+
 struct SecurityChecksGrid: View {
     let checks: [SecurityCheck]
     
@@ -74,6 +117,101 @@ struct SecurityChecksGrid: View {
             ForEach(checks) { check in
                 SecurityCheckCard(check: check)
             }
+        }
+    }
+}
+
+struct RecommendationsList: View {
+    let recommendations: [String]
+    
+    var body: some View {
+        VStack(spacing: 12) {
+            ForEach(Array(recommendations.enumerated()), id: \.offset) { index, recommendation in
+                HStack(alignment: .top, spacing: 12) {
+                    Image(systemName: "lightbulb.fill")
+                        .foregroundStyle(.yellow)
+                        .font(.title3)
+                    
+                    Text(recommendation)
+                        .font(.subheadline)
+                        .foregroundStyle(.primary)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
+                .padding()
+                .background(.ultraThinMaterial)
+                .clipShape(RoundedRectangle(cornerRadius: 12))
+            }
+        }
+    }
+}
+
+struct QuickActionsGrid: View {
+    var body: some View {
+        LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 2), spacing: 16) {
+            QuickActionButton(
+                title: "Check Updates",
+                icon: "arrow.triangle.2.circlepath",
+                color: .blue
+            ) {
+                // Open Settings app
+                if let url = URL(string: "App-Prefs:root=General&path=SOFTWARE_UPDATE_LINK") {
+                    UIApplication.shared.open(url)
+                }
+            }
+            
+            QuickActionButton(
+                title: "Security Settings",
+                icon: "gear.badge.checkmark",
+                color: .green
+            ) {
+                if let url = URL(string: UIApplication.openSettingsURLString) {
+                    UIApplication.shared.open(url)
+                }
+            }
+            
+            QuickActionButton(
+                title: "Privacy Report",
+                icon: "shield.lefthalf.filled",
+                color: .purple
+            ) {
+                // Could open privacy report in future
+            }
+            
+            QuickActionButton(
+                title: "App Permissions",
+                icon: "hand.raised.fill",
+                color: .orange
+            ) {
+                if let url = URL(string: UIApplication.openSettingsURLString) {
+                    UIApplication.shared.open(url)
+                }
+            }
+        }
+    }
+}
+
+struct QuickActionButton: View {
+    let title: String
+    let icon: String
+    let color: Color
+    let action: () -> Void
+    
+    var body: some View {
+        Button(action: action) {
+            VStack(spacing: 8) {
+                Image(systemName: icon)
+                    .font(.title2)
+                    .foregroundStyle(color)
+                
+                Text(title)
+                    .font(.caption)
+                    .multilineTextAlignment(.center)
+                    .lineLimit(2)
+                    .foregroundStyle(.primary)
+            }
+            .frame(maxWidth: .infinity, maxHeight: 80)
+            .background(.ultraThinMaterial)
+            .clipShape(RoundedRectangle(cornerRadius: 12))
         }
     }
 }
