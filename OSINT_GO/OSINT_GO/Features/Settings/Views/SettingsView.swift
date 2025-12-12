@@ -51,6 +51,11 @@ struct SettingsView: View {
                         showingImportPicker = true
                     }
                     .foregroundStyle(.blue)
+                    
+                    Button("Export/Import Help") {
+                        showingExportHelp = true
+                    }
+                    .foregroundStyle(.secondary)
                 }
                 
                 Section("Legal & Info") {
@@ -95,7 +100,6 @@ struct SettingsView: View {
             alertTitle = "Export Successful"
             alertMessage = "Investigations exported to: \(exportURL.lastPathComponent)"
             showingAlert = true
-            showingExportHelp = true
         } catch {
             alertTitle = "Export Failed"
             alertMessage = error.localizedDescription
