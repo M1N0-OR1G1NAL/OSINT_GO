@@ -47,7 +47,7 @@ struct DeviceSecurityView: View {
 }
 
 struct SecurityStatusCard: View {
-    let status: SecurityStatus
+    let status: DeviceSecurityViewModel.SecurityStatus
     let score: Double
     
     var body: some View {

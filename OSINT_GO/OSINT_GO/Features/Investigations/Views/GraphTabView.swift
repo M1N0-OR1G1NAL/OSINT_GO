@@ -91,7 +91,8 @@ struct GraphNode: Identifiable {
     let type: TargetType
 }
 
-struct GraphLine {
+struct GraphLine: Identifiable {
+    let id = UUID()
     let from: CGPoint
     let to: CGPoint
     let strength: Double
