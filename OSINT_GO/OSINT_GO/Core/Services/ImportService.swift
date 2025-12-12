@@ -131,11 +131,12 @@ class ImportService {
         for targetData in targetsData {
             guard let typeString = targetData["type"] as? String,
                   let value = targetData["value"] as? String,
-                  let label = targetData["label"] as? String else {
+                  let label = targetData["label"] as? String,
+                  let targetType = TargetType(rawValue: typeString) else {
                 continue
             }
             
-            let target = Target(type: typeString, value: value, label: label)
+            let target = Target(type: targetType, value: value, label: label)
             
             // Parse results if present
             if let resultsData = targetData["results"] as? [[String: Any]] {
@@ -150,9 +151,10 @@ class ImportService {
                     
                     let result = ModuleResult(
                         moduleName: moduleName,
+                        targetId: target.id,
                         summary: summary,
-                        riskScore: riskScore,
                         details: [:],
+                        riskScore: riskScore,
                         timestamp: timestamp
                     )
                     target.results.append(result)
