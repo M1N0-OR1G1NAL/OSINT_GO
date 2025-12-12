@@ -26,4 +26,19 @@ struct OsintPlaybook {
         name: "Reputation Check",
         capabilities: [.ipGeolocation, .whoisLookup]
     )
+    
+    static let personInvestigation: Self = (
+        name: "Person Investigation",
+        capabilities: [.personSearch, .socialMediaSearch, .emailValidation]
+    )
+    
+    static let companyInvestigation: Self = (
+        name: "Company Investigation",
+        capabilities: [.companyLookup, .icoLookup, .whoisLookup]
+    )
+    
+    static let fullOSINT: Self = (
+        name: "Full OSINT Scan",
+        capabilities: OsintCapability.allCases
+    )
 }

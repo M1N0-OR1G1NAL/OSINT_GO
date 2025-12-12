@@ -19,6 +19,8 @@ class ModulesViewModel {
     let usernameModule = UsernameModule()
     let companyModule = CompanyModule()
     let phoneModule = PhoneModule()
+    let personModule = PersonModule()
+    let socialMediaModule = SocialMediaModule()
     
     var selectedModuleForRun: OsintModule?
     
