@@ -14,23 +14,23 @@ struct DomainIpModule: OsintModule {
     let supportedTypes: [TargetType] = [.domain, .ipAddress]
     
     func execute(on target: Target, context: OsintContext) async throws -> ModuleResult {
-        var details: [String: Any] = [:]
+        var details: [String: String] = [:]
         var riskScore: Double = 0.0
-        
+
         switch TargetType(rawValue: target.type) {
         case .domain:
             let dns = try await context.httpClient.get("https://dns.google/resolve?name=\(target.value)")
-            details["DNS"] = dns
+            details["DNS"] = ModuleResult.detailString(from: dns)
             riskScore += 0.3
-            
+
         case .ipAddress:
             let ipInfo = try await context.httpClient.get("https://ipinfo.io/\(target.value)/json")
-            details["IPInfo"] = ipInfo
+            details["IPInfo"] = ModuleResult.detailString(from: ipInfo)
             riskScore += 0.2
-            
+
         default: break
         }
-        
+
         return ModuleResult(
             moduleName: name,
             targetId: target.id,

@@ -12,9 +12,9 @@ struct PersonModule: OsintModule {
     let name = "Person Name OSINT"
     let capabilities: [OsintCapability] = [.personSearch]
     let supportedTypes: [TargetType] = [.personName]
-    
+
     func execute(on target: Target, context: OsintContext) async throws -> ModuleResult {
-        var details: [String: Any] = [:]
+        var details: [String: String] = [:]
         var riskScore: Double = 0.0
         
         let personName = target.value.trimmingCharacters(in: .whitespaces)
@@ -27,18 +27,26 @@ struct PersonModule: OsintModule {
         // Generate comprehensive search queries
         let queries = generatePersonSearchQueries(personName)
         details["vyhledávací_dotazy"] = queries
+            .map { "\($0.key): \($0.value)" }
+            .joined(separator: "\n")
         
         // Generate social media specific queries
         let socialQueries = generateSocialMediaQueries(personName)
         details["sociální_sítě"] = socialQueries
+            .map { "\($0.key): \($0.value)" }
+            .joined(separator: "\n")
         
         // Generate professional queries
         let professionalQueries = generateProfessionalQueries(personName)
         details["profesní_sítě"] = professionalQueries
+            .map { "\($0.key): \($0.value)" }
+            .joined(separator: "\n")
         
         // Generate Czech-specific queries
         let czechQueries = generateCzechSpecificQueries(personName)
         details["české_zdroje"] = czechQueries
+            .map { "\($0.key): \($0.value)" }
+            .joined(separator: "\n")
         
         riskScore = 0.3
         
@@ -98,7 +106,7 @@ struct PersonModule: OsintModule {
     
     private func generateCzechSpecificQueries(_ name: String) -> [String: String] {
         let encoded = name.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? name
-        
+
         return [
             "MPSV (Insolvence)": "https://isir.justice.cz/isir/common/search.do?name=\"\(encoded)\"",
             "Justice.cz": "https://www.justice.cz/web/guest/vyhledavani?p_p_id=searchportlet_WAR_isvjportlet&q=\"\(encoded)\"",

@@ -33,8 +33,8 @@ struct UsernameModule: OsintModule {
     }
     
     func execute(on target: Target, context: OsintContext) async throws -> ModuleResult {
-        var details: [String: Any] = [:]
-        var platformResults: [String: [String: Any]] = [:]
+        var details: [String: String] = [:]
+        var platformResults: [String: Bool] = [:]
         var foundCount = 0
         var riskScore: Double = 0.0
         
@@ -51,25 +51,29 @@ struct UsernameModule: OsintModule {
             }
             
             for await result in group {
-                if let (platformName, exists, url) = result {
-                    platformResults[platformName] = [
-                        "nalezeno": exists,
-                        "url": url
-                    ]
+                if let (platformName, exists, _) = result {
+                    platformResults[platformName] = exists
                     if exists {
                         foundCount += 1
                     }
                 }
             }
         }
-        
-        details["platformy"] = platformResults
-        details["nalezeno_celkem"] = foundCount
-        details["zkontrolováno_platforem"] = Platform.platforms.count
+
+        let platformsSummary = platformResults
+            .map { "\($0.key): \($0.value ? "found" : "missing")" }
+            .sorted()
+            .joined(separator: "\n")
+
+        details["platformy"] = platformsSummary
+        details["nalezeno_celkem"] = String(foundCount)
+        details["zkontrolováno_platforem"] = String(Platform.platforms.count)
         
         // Generate additional search queries
         let queries = generateSearchQueries(username)
         details["další_vyhledávání"] = queries
+            .map { "\($0.key): \($0.value)" }
+            .joined(separator: "\n")
         
         // Calculate risk score based on how many platforms the username is found on
         riskScore = foundCount > 0 ? Double(foundCount) / Double(Platform.platforms.count) : 0.5

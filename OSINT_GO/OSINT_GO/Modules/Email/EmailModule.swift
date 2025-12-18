@@ -12,37 +12,40 @@ struct EmailModule: OsintModule {
     let name = "Email OSINT"
     let capabilities: [OsintCapability] = [.emailValidation]
     let supportedTypes: [TargetType] = [.email]
-    
+
     func execute(on target: Target, context: OsintContext) async throws -> ModuleResult {
-        var details: [String: Any] = [:]
+        var details: [String: String] = [:]
         var riskScore: Double = 0.0
-        
+
         let email = target.value.trimmingCharacters(in: .whitespaces)
-        
+
         // Validate email format
         let isValid = validateEmailFormat(email)
-        details["validní_formát"] = isValid
-        
+        details["validní_formát"] = isValid ? "true" : "false"
+
         if isValid {
             // Extract domain
             let components = email.split(separator: "@")
             if components.count == 2 {
                 let domain = String(components[1])
                 details["doména"] = domain
-                
+
                 // Try to get MX records
                 do {
                     let mxRecords = try await lookupMXRecords(domain: domain, context: context)
-                    details["MX_záznamy"] = mxRecords
+                    details["MX_záznamy"] = mxRecords.joined(separator: ", ")
                     riskScore = mxRecords.isEmpty ? 0.6 : 0.2
                 } catch {
                     details["MX_chyba"] = "Nepodařilo se získat MX záznamy"
                     riskScore = 0.4
                 }
-                
+
                 // Generate search queries
                 let queries = generateSearchQueries(email)
-                details["vyhledávací_dotazy"] = queries
+                let joinedQueries = queries
+                    .map { "\($0.key): \($0.value)" }
+                    .joined(separator: "\n")
+                details["vyhledávací_dotazy"] = joinedQueries
             }
         } else {
             details["chyba"] = "Neplatný formát e-mailové adresy"

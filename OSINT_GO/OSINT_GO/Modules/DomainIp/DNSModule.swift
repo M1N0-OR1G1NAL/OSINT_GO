@@ -16,23 +16,30 @@ struct DNSModule: OsintModule {
     let supportedTypes: [TargetType] = [.domain]
     let iconName = "network"
     let color = Color.blue
-    
+
     func execute(on target: Target, context: OsintContext) async throws -> ModuleResult {
         let dnsData = try await context.httpClient.get(
             "https://dns.google/resolve?name=\(target.value)&type=ALL"
         )
-        
-        var details: [String: Any] = ["raw": dnsData]
-        
-        if let answer = (dnsData["Answer"] as? [[String: Any]]), !answer.isEmpty {
-            details["A Records"] = answer.compactMap { $0["data"] as? String }
-            details["MX Records"] = answer.compactMap { ($0["data"] as? String)?.replacingOccurrences(of: " ", with: "") }
+
+        let answers = dnsData["Answer"] as? [[String: Any]] ?? []
+        let aRecords = answers.compactMap { $0["data"] as? String }
+        let mxRecords = answers.compactMap { ($0["data"] as? String)?.replacingOccurrences(of: " ", with: "") }
+
+        var details: [String: String] = ["raw": ModuleResult.detailString(from: dnsData)]
+
+        if !aRecords.isEmpty {
+            details["A Records"] = aRecords.joined(separator: ", ")
         }
-        
+
+        if !mxRecords.isEmpty {
+            details["MX Records"] = mxRecords.joined(separator: ", ")
+        }
+
         return ModuleResult(
             moduleName: name,
             targetId: target.id,
-            summary: "Found \(details["A Records"]?.count ?? 0) A records",
+            summary: "Found \(aRecords.count) A records",
             details: details,
             riskScore: 0.1,
             timestamp: Date()
