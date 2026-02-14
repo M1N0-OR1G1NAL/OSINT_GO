@@ -19,7 +19,9 @@ extension OsintModule {
             PhoneModule(),
             CompanyModule(),
             PersonModule(),
-            SocialMediaModule()
+            SocialMediaModule(),
+            AddressModule(),
+            OpenDatabasesModule()
         ]
     }
 }

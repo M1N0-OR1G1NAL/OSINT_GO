@@ -37,8 +37,47 @@ struct OsintPlaybook {
         capabilities: [.companyLookup, .icoLookup, .whoisLookup]
     )
     
+    static let addressInvestigation: Self = (
+        name: "Address Investigation",
+        capabilities: [.addressLookup, .geocoding, .propertyData]
+    )
+    
+    static let breachMonitoring: Self = (
+        name: "Breach & Leak Monitoring",
+        capabilities: [.breachCheck, .credentialSearch, .pasteSearch, .emailValidation]
+    )
+    
+    static let comprehensiveRecon: Self = (
+        name: "Comprehensive Recon",
+        capabilities: [
+            .emailValidation,
+            .phoneValidation,
+            .phoneCarrier,
+            .usernameCheck,
+            .socialMediaSearch,
+            .personSearch,
+            .addressLookup,
+            .geocoding,
+            .breachCheck
+        ]
+    )
+    
     static let fullOSINT: Self = (
         name: "Full OSINT Scan",
         capabilities: OsintCapability.allCases
     )
+    
+    static var allPlaybooks: [Self] {
+        return [
+            quickRecon,
+            deepInfra,
+            reputationCheck,
+            personInvestigation,
+            companyInvestigation,
+            addressInvestigation,
+            breachMonitoring,
+            comprehensiveRecon,
+            fullOSINT
+        ]
+    }
 }
