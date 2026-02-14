@@ -153,7 +153,7 @@ struct PhoneModule: OsintModule {
             // 3. Czech Classifieds & Marketplace
             "Sbazar.cz": "https://www.google.com/search?q=site:sbazar.cz+\"\(cleaned)\"",
             "Sreality.cz": "https://www.google.com/search?q=site:sreality.cz+\"\(cleaned)\"",
-            "Bazoš.cz": "https://www.google.com/search?q=site:bazoš.cz+\"\(cleaned)\"",
+            "Bazos.cz": "https://www.google.com/search?q=site:bazos.cz+\"\(cleaned)\"",
             "Sauto.cz": "https://www.google.com/search?q=site:sauto.cz+\"\(cleaned)\"",
             "Hyperinzerce": "https://www.google.com/search?q=site:hyperinzerce.cz+\"\(cleaned)\"",
             

@@ -448,11 +448,15 @@ class ReportGenerator {
         """
     }
     
-    private static func formatDate(_ date: Date) -> String {
+    private static let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
         formatter.timeStyle = .short
         formatter.locale = Locale(identifier: "cs_CZ")
-        return formatter.string(from: date)
+        return formatter
+    }()
+    
+    private static func formatDate(_ date: Date) -> String {
+        return dateFormatter.string(from: date)
     }
 }

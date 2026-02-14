@@ -366,14 +366,24 @@ class CorrelationEngine {
         let s1 = str1.lowercased()
         let s2 = str2.lowercased()
         
-        let distance = levenshteinDistance(s1, s2)
-        let maxLength = Double(max(s1.count, s2.count))
+        // Prevent excessive memory usage for very long strings
+        let maxLength = 1000
+        if s1.count > maxLength || s2.count > maxLength {
+            // For very long strings, use a simple containment check
+            if s1.contains(s2) || s2.contains(s1) {
+                return 0.8
+            }
+            return 0.0
+        }
         
-        if maxLength == 0 {
+        let distance = levenshteinDistance(s1, s2)
+        let maxLengthValue = Double(max(s1.count, s2.count))
+        
+        if maxLengthValue == 0 {
             return 1.0
         }
         
-        return 1.0 - (Double(distance) / maxLength)
+        return 1.0 - (Double(distance) / maxLengthValue)
     }
     
     /// Levenshtein distance algorithm

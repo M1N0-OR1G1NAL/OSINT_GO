@@ -183,13 +183,18 @@ class AutomatedAgentService: ObservableObject {
         // Stop existing timer if any
         stopAgent(agent.id)
         
-        // Create a new timer
+        // Create a new timer - capture agent ID only
+        let agentId = agent.id
         let timer = Timer.scheduledTimer(
             withTimeInterval: agent.schedule.interval,
             repeats: true
         ) { [weak self] _ in
             Task { @MainActor in
-                await self?.executeAgent(agent)
+                // Look up current agent configuration
+                guard let currentAgent = self?.agents.first(where: { $0.id == agentId }) else {
+                    return
+                }
+                await self?.executeAgent(currentAgent)
             }
         }
         
