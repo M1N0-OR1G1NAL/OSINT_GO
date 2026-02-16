@@ -7,19 +7,27 @@
 
 
 import SwiftUI
+import SwiftData
 
 struct AppInfoView: View {
+    @Environment(\.modelContext) private var modelContext
+    @Query private var investigations: [Investigation]
+    
+    private var moduleCount: Int {
+        OsintModule.allModules.count
+    }
+    
     var body: some View {
         List {
             Section("Atlas OSINT") {
                 LabeledContent("Version") {
-                    Text("1.0.0")
+                    Text(AppConfig.appVersion)
                 }
                 LabeledContent("Modules") {
-                    Text("12 active")
+                    Text("\(moduleCount) active")
                 }
                 LabeledContent("Investigations") {
-                    Text("42 stored")
+                    Text("\(investigations.count) stored")
                 }
             }
             

@@ -10,7 +10,7 @@ import Foundation
 
 struct AppConfig {
     static let appName = "Atlas OSINT"
-    static let appVersion = "1.0.0"
+    static let appVersion = "1.1.0"
     static let maxConcurrentRequests = 5
     static let requestTimeout: TimeInterval = 30
     
