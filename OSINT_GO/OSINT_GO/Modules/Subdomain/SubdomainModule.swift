@@ -61,7 +61,7 @@ struct SubdomainModule: OsintModule {
         let encoded = domain.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? domain
         
         return [
-            "crt.sh": "https://crt.sh/?q=%25.\(domain)",
+            "crt.sh": "https://crt.sh/?q=%.\(domain)",
             "SecurityTrails": "https://securitytrails.com/domain/\(domain)/subdomains",
             "DNSdumpster": "https://dnsdumpster.com/",
             "VirusTotal": "https://www.virustotal.com/gui/domain/\(domain)/relations",
