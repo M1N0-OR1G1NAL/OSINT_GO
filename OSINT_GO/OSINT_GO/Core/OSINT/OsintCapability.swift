@@ -9,6 +9,7 @@
 import Foundation
 
 enum OsintCapability: String, CaseIterable {
+    // Existing capabilities
     case dnsLookup = "DNS Lookup"
     case whoisLookup = "WHOIS"
     case ipGeolocation = "IP Geolokace"
@@ -22,4 +23,16 @@ enum OsintCapability: String, CaseIterable {
     case icoLookup = "IČO Lookup"
     case personSearch = "Vyhledávání osoby"
     case socialMediaSearch = "Social Media"
+    
+    // New capabilities - inspired by OSINT Framework
+    case breachSearch = "Data Breach Search"
+    case subdomainEnumeration = "Subdomain Enumeration"
+    case metadataExtraction = "Metadata Extraction"
+    case pasteSiteSearch = "Paste Site Search"
+    case certificateTransparency = "Certificate Transparency"
+    case codeRepositorySearch = "Code Repository Search"
+    case darkWebSearch = "Dark Web Search"
+    case socialAnalytics = "Social Analytics"
+    case reverseImageSearch = "Reverse Image Search"
+    case advancedGeolocation = "Advanced Geolocation"
 }
