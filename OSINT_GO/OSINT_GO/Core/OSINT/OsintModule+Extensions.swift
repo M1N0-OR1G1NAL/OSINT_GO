@@ -11,6 +11,7 @@ import Foundation
 extension OsintModule {
     static var allModules: [OsintModule] {
         return [
+            // Existing modules
             DomainIpModule(),
             DNSModule(),
             WhoisModule(),
@@ -19,7 +20,17 @@ extension OsintModule {
             PhoneModule(),
             CompanyModule(),
             PersonModule(),
-            SocialMediaModule()
+            SocialMediaModule(),
+            
+            // New OSINT Framework modules
+            BreachModule(),
+            SubdomainModule(),
+            MetadataModule(),
+            CertificateModule(),
+            RepositoryModule(),
+            GeolocationModule(),
+            SocialAnalyticsModule(),
+            DarkWebModule()
         ]
     }
 }
