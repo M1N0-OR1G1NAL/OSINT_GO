@@ -16,6 +16,8 @@ class Investigation {
     var createdAt: Date
     var updatedAt: Date
     var targets: [Target] = []
+    var notes: [Note] = []
+    var roots: String = "" // Origins/roots of investigation
     var graphData: GraphData?
     var riskScore: Double = 0.0
     

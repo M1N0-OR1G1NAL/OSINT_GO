@@ -19,7 +19,7 @@ struct PersistenceController {
         do {
             // sem patří všechny tvoje @Model třídy
             container = try ModelContainer(
-                for: Investigation.self, Target.self
+                for: Investigation.self, Target.self, Note.self
             )
         } catch {
             fatalError("Failed to create ModelContainer: \(error)")

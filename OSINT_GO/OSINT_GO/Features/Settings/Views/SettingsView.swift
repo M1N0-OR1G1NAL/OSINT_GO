@@ -7,19 +7,69 @@
 
 
 import SwiftUI
+import SwiftData
+import UniformTypeIdentifiers
 
 struct SettingsView: View {
+    @Environment(\.modelContext) private var modelContext
     @AppStorage("legalModeEnabled") private var legalModeEnabled = true
     @AppStorage("telemetryEnabled") private var telemetryEnabled = false
     @AppStorage("maxConcurrentRequests") private var maxConcurrentRequests = 5
     @AppStorage("autoSaveInvestigations") private var autoSaveInvestigations = true
+    @AppStorage("appLanguage") private var appLanguage = AppLanguage.english.rawValue
+    @AppStorage("appAppearance") private var appAppearance = AppAppearance.system.rawValue
+    @AppStorage("aiApiKey") private var aiApiKey = ""
+    @AppStorage("useSubscriptionAI") private var useSubscriptionAI = false
     
     @State private var showingLegalEthics = false
     @State private var showingExportHelp = false
+    @State private var showingImportPicker = false
+    @State private var showingAlert = false
+    @State private var alertTitle = ""
+    @State private var alertMessage = ""
+    @State private var showingAPIConfig = false
     
     var body: some View {
         NavigationView {
             List {
+                Section("Language & Appearance") {
+                    Picker("Language", selection: $appLanguage) {
+                        ForEach(AppLanguage.allCases, id: \.rawValue) { lang in
+                            Text(lang.displayName).tag(lang.rawValue)
+                        }
+                    }
+                    .onChange(of: appLanguage) { _, newValue in
+                        // Sync with LocalizationManager
+                        if let language = AppLanguage(rawValue: newValue) {
+                            LocalizationManager.shared.currentLanguage = language
+                        }
+                    }
+                    
+                    Picker("Appearance", selection: $appAppearance) {
+                        ForEach(AppAppearance.allCases, id: \.rawValue) { appearance in
+                            Text(appearance.displayName).tag(appearance.rawValue)
+                        }
+                    }
+                }
+                
+                Section("AI Configuration") {
+                    Toggle("Use Subscription AI Engines", isOn: $useSubscriptionAI)
+                        .toggleStyle(SwitchToggleStyle(tint: .purple))
+                    
+                    if !useSubscriptionAI {
+                        Button("Configure AI API") {
+                            showingAPIConfig = true
+                        }
+                        .foregroundStyle(.blue)
+                    }
+                    
+                    if !aiApiKey.isEmpty {
+                        Label("API Key Configured", systemImage: "checkmark.circle.fill")
+                            .foregroundStyle(.green)
+                            .font(.caption)
+                    }
+                }
+                
                 Section("OSINT Mode") {
                     Toggle("Legal & Ethics Mode", isOn: $legalModeEnabled)
                         .toggleStyle(SwitchToggleStyle(tint: .blue))
@@ -34,6 +84,18 @@ struct SettingsView: View {
                     Toggle("Auto-save Investigations", isOn: $autoSaveInvestigations)
                 }
                 
+                Section("Subscription") {
+                    NavigationLink {
+                        SubscriptionView()
+                    } label: {
+                        HStack {
+                            Image(systemName: "star.circle.fill")
+                                .foregroundStyle(.yellow)
+                            Text("Manage Subscription")
+                        }
+                    }
+                }
+                
                 Section("Export & Backup") {
                     Button("Export All Investigations") {
                         exportAllInvestigations()
@@ -41,9 +103,14 @@ struct SettingsView: View {
                     .foregroundStyle(.blue)
                     
                     Button("Import Investigations") {
-                        // TODO: Import logic
+                        showingImportPicker = true
                     }
                     .foregroundStyle(.blue)
+                    
+                    Button("Export/Import Help") {
+                        showingExportHelp = true
+                    }
+                    .foregroundStyle(.secondary)
                 }
                 
                 Section("Legal & Info") {
@@ -53,6 +120,10 @@ struct SettingsView: View {
                     
                     NavigationLink("Privacy Policy") {
                         PrivacyPolicyView()
+                    }
+                    
+                    NavigationLink("Terms of Service") {
+                        TermsView()
                     }
                     
                     NavigationLink("App Info") {
@@ -67,11 +138,56 @@ struct SettingsView: View {
             .sheet(isPresented: $showingExportHelp) {
                 ExportHelpView()
             }
+            .fileImporter(
+                isPresented: $showingImportPicker,
+                allowedContentTypes: [UTType.json],
+                allowsMultipleSelection: false
+            ) { result in
+                handleImport(result)
+            }
+            .alert(alertTitle, isPresented: $showingAlert) {
+                Button("OK", role: .cancel) { }
+            } message: {
+                Text(alertMessage)
+            .sheet(isPresented: $showingAPIConfig) {
+                AIAPIConfigView(apiKey: $aiApiKey)
+            }
         }
     }
     
     private func exportAllInvestigations() {
-        // Export logic - viz níže
-        showingExportHelp = true
+        do {
+            let exportURL = try ExportService.shared.exportAllInvestigations(context: modelContext)
+            alertTitle = "Export Successful"
+            alertMessage = "Investigations exported to: \(exportURL.lastPathComponent)"
+            showingAlert = true
+        } catch {
+            alertTitle = "Export Failed"
+            alertMessage = error.localizedDescription
+            showingAlert = true
+        }
+    }
+    
+    private func handleImport(_ result: Result<[URL], Error>) {
+        switch result {
+        case .success(let urls):
+            guard let url = urls.first else { return }
+            
+            do {
+                let count = try ImportService.shared.importInvestigations(from: url, context: modelContext)
+                alertTitle = "Import Successful"
+                alertMessage = "Successfully imported \(count) investigation(s)."
+                showingAlert = true
+            } catch {
+                alertTitle = "Import Failed"
+                alertMessage = error.localizedDescription
+                showingAlert = true
+            }
+            
+        case .failure(let error):
+            alertTitle = "Import Failed"
+            alertMessage = error.localizedDescription
+            showingAlert = true
+        }
     }
 }

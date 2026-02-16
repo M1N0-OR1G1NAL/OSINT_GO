@@ -39,6 +39,7 @@ struct InvestigationDetailView: View {
                             Text("Timeline").tag(1)
                             Text("Graph").tag(2)
                             Text("Results").tag(3)
+                            Text("Notes").tag(4)
                         }
                         .pickerStyle(.segmented)
                         .padding()
@@ -48,7 +49,8 @@ struct InvestigationDetailView: View {
                             case 0: TargetsTabView(investigation: investigation)
                             case 1: TimelineTabView(investigation: investigation)
                             case 2: GraphTabView(investigation: investigation)
-                            default: ResultsTabView(investigation: investigation)
+                            case 3: ResultsTabView(investigation: investigation)
+                            default: NotesTabView(investigation: investigation)
                             }
                         }
                         .transition(.opacity.combined(with: .scale))
