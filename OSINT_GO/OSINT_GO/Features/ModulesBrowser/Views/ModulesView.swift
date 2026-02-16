@@ -96,3 +96,57 @@ struct GlassModuleRow: View {
     let module: OsintModule
     @Binding var selectedTarget: Target?
     @State private var isPressed = false
+    @State private var showingTargetPicker = false
+    
+    var body: some View {
+        Button {
+            showingTargetPicker = true
+        } label: {
+            HStack {
+                Image(systemName: module.iconName)
+                    .font(.title2)
+                    .foregroundStyle(module.color)
+                    .frame(width: 40)
+                
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(module.name)
+                        .font(.headline)
+                        .foregroundColor(.white)
+                    Text(module.description)
+                        .font(.caption)
+                        .foregroundColor(.white.opacity(0.7))
+                        .lineLimit(2)
+                }
+                
+                Spacer()
+                
+                Image(systemName: "chevron.right")
+                    .foregroundColor(.white.opacity(0.5))
+            }
+            .padding()
+            .background(.ultraThinMaterial)
+            .clipShape(RoundedRectangle(cornerRadius: 16))
+            .overlay(
+                RoundedRectangle(cornerRadius: 16)
+                    .stroke(.white.opacity(0.2), lineWidth: 1)
+            )
+            .shadow(color: .black.opacity(0.3), radius: 8, x: 0, y: 4)
+            .scaleEffect(isPressed ? 0.98 : 1.0)
+            .animation(.spring(response: 0.3, dampingFraction: 0.7), value: isPressed)
+            .onLongPressGesture(minimumDuration: 0.05, pressing: { pressing in
+                isPressed = pressing
+            }, perform: {})
+        }
+        .buttonStyle(.plain)
+        .alert("Select Target", isPresented: $showingTargetPicker) {
+            Button("Cancel", role: .cancel) { }
+        } message: {
+            Text("Please create a target in an investigation first to run this module.")
+        }
+    }
+}
+
+#Preview {
+    ModulesView()
+}
+

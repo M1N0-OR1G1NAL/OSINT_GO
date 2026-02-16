@@ -16,6 +16,10 @@ struct SettingsView: View {
     @AppStorage("telemetryEnabled") private var telemetryEnabled = false
     @AppStorage("maxConcurrentRequests") private var maxConcurrentRequests = 5
     @AppStorage("autoSaveInvestigations") private var autoSaveInvestigations = true
+    @AppStorage("appLanguage") private var appLanguage = AppLanguage.english.rawValue
+    @AppStorage("appAppearance") private var appAppearance = AppAppearance.system.rawValue
+    @AppStorage("aiApiKey") private var aiApiKey = ""
+    @AppStorage("useSubscriptionAI") private var useSubscriptionAI = false
     
     @State private var showingLegalEthics = false
     @State private var showingExportHelp = false
@@ -23,10 +27,49 @@ struct SettingsView: View {
     @State private var showingAlert = false
     @State private var alertTitle = ""
     @State private var alertMessage = ""
+    @State private var showingAPIConfig = false
     
     var body: some View {
         NavigationView {
             List {
+                Section("Language & Appearance") {
+                    Picker("Language", selection: $appLanguage) {
+                        ForEach(AppLanguage.allCases, id: \.rawValue) { lang in
+                            Text(lang.displayName).tag(lang.rawValue)
+                        }
+                    }
+                    .onChange(of: appLanguage) { _, newValue in
+                        // Sync with LocalizationManager
+                        if let language = AppLanguage(rawValue: newValue) {
+                            LocalizationManager.shared.currentLanguage = language
+                        }
+                    }
+                    
+                    Picker("Appearance", selection: $appAppearance) {
+                        ForEach(AppAppearance.allCases, id: \.rawValue) { appearance in
+                            Text(appearance.displayName).tag(appearance.rawValue)
+                        }
+                    }
+                }
+                
+                Section("AI Configuration") {
+                    Toggle("Use Subscription AI Engines", isOn: $useSubscriptionAI)
+                        .toggleStyle(SwitchToggleStyle(tint: .purple))
+                    
+                    if !useSubscriptionAI {
+                        Button("Configure AI API") {
+                            showingAPIConfig = true
+                        }
+                        .foregroundStyle(.blue)
+                    }
+                    
+                    if !aiApiKey.isEmpty {
+                        Label("API Key Configured", systemImage: "checkmark.circle.fill")
+                            .foregroundStyle(.green)
+                            .font(.caption)
+                    }
+                }
+                
                 Section("OSINT Mode") {
                     Toggle("Legal & Ethics Mode", isOn: $legalModeEnabled)
                         .toggleStyle(SwitchToggleStyle(tint: .blue))
@@ -39,6 +82,18 @@ struct SettingsView: View {
                     Toggle("Anonymous Telemetry", isOn: $telemetryEnabled)
                         .toggleStyle(SwitchToggleStyle(tint: .orange))
                     Toggle("Auto-save Investigations", isOn: $autoSaveInvestigations)
+                }
+                
+                Section("Subscription") {
+                    NavigationLink {
+                        SubscriptionView()
+                    } label: {
+                        HStack {
+                            Image(systemName: "star.circle.fill")
+                                .foregroundStyle(.yellow)
+                            Text("Manage Subscription")
+                        }
+                    }
                 }
                 
                 Section("Export & Backup") {
@@ -67,6 +122,10 @@ struct SettingsView: View {
                         PrivacyPolicyView()
                     }
                     
+                    NavigationLink("Terms of Service") {
+                        TermsView()
+                    }
+                    
                     NavigationLink("App Info") {
                         AppInfoView()
                     }
@@ -90,6 +149,8 @@ struct SettingsView: View {
                 Button("OK", role: .cancel) { }
             } message: {
                 Text(alertMessage)
+            .sheet(isPresented: $showingAPIConfig) {
+                AIAPIConfigView(apiKey: $aiApiKey)
             }
         }
     }
