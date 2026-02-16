@@ -31,6 +31,30 @@ Each module implements the `OsintModule` protocol and provides specific OSINT ca
 ### Social Media Module (`SocialMedia/`)
 9. **SocialMediaModule** - Platform-specific social media search strategies
 
+### Data Breach Module (`Breach/`)
+10. **BreachModule** - Data breach and leak database search (HaveIBeenPwned, DeHashed, paste sites)
+
+### Subdomain Module (`Subdomain/`)
+11. **SubdomainModule** - Subdomain enumeration using Certificate Transparency, DNS, and passive methods
+
+### Metadata Module (`Metadata/`)
+12. **MetadataModule** - Metadata extraction from documents, images (EXIF, PDF, Office files)
+
+### Certificate Module (`Certificate/`)
+13. **CertificateModule** - Certificate Transparency logs search (crt.sh, Censys, SSLMate)
+
+### Repository Module (`Repository/`)
+14. **RepositoryModule** - Code repository search (GitHub, GitLab, Bitbucket, secrets detection)
+
+### Geolocation Module (`Geolocation/`)
+15. **GeolocationModule** - Advanced geolocation for IP addresses, phones, and addresses
+
+### Social Analytics Module (`SocialAnalytics/`)
+16. **SocialAnalyticsModule** - Advanced social media analytics, network analysis, sentiment analysis
+
+### Dark Web Module (`DarkWeb/`)
+17. **DarkWebModule** - Dark web search resources (passive only, clearnet access points)
+
 ## Usage
 
 Modules are automatically registered via `OsintModule.allModules` and can be executed through the `OsintOrchestrator`:
@@ -92,6 +116,7 @@ protocol OsintModule {
 
 ## OSINT Capabilities
 
+### Existing Capabilities
 - `dnsLookup` - DNS record lookups
 - `whoisLookup` - WHOIS queries
 - `ipGeolocation` - IP location
@@ -105,6 +130,18 @@ protocol OsintModule {
 - `icoLookup` - IČO lookup
 - `personSearch` - Person search
 - `socialMediaSearch` - Social media
+
+### New Capabilities (OSINT Framework inspired)
+- `breachSearch` - Data breach and leak database search
+- `subdomainEnumeration` - Subdomain discovery and enumeration
+- `metadataExtraction` - Extract metadata from files and images
+- `pasteSiteSearch` - Search paste sites for leaked data
+- `certificateTransparency` - Certificate Transparency logs
+- `codeRepositorySearch` - Search code repositories for information
+- `darkWebSearch` - Dark web search (passive, clearnet access)
+- `socialAnalytics` - Advanced social media analytics
+- `reverseImageSearch` - Reverse image search capabilities
+- `advancedGeolocation` - Advanced IP/phone/address geolocation
 
 ## Legal & Ethical Considerations
 

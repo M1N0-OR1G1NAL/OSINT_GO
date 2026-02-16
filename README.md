@@ -2,16 +2,18 @@
 
 Multiplatformní SwiftUI OSINT nástroj pro iOS/iPadOS/AR brýle s robustním jádrem. Podporuje paralelní sběr, korelace a vizualizace dat, šifrovanou persistenci, modulární OSINT engine a důraz na bezpečnost, právní rámec a profesionální UX.
 
-## Version 1.1.0
+## Version 1.2.0
 
 ### New Features
 - ✅ Complete Import/Export functionality for investigations
 - ✅ Dynamic app information display
 - ✅ Enhanced error handling and user notifications
 - ✅ Export help documentation
+- ✅ **8 New OSINT Modules** inspired by OSINT Framework (osintframework.com)
 
-### OSINT Modules
-The application includes comprehensive OSINT modules:
+### OSINT Modules (17 Total)
+
+#### Core Modules
 - **Domain/IP**: DNS records, WHOIS, domain analysis
 - **Email**: Validation, MX lookup, search queries
 - **Username**: Multi-platform username checking (10+ platforms)
@@ -19,6 +21,16 @@ The application includes comprehensive OSINT modules:
 - **Company**: Czech IČO lookup, ARES integration
 - **Person**: Comprehensive person search (30+ sources)
 - **Social Media**: Platform-specific search strategies
+
+#### New Advanced Modules (v1.2.0)
+- **Data Breach Search**: HaveIBeenPwned, DeHashed, paste site search
+- **Subdomain Enumeration**: Certificate Transparency, DNS-based discovery
+- **Metadata Extraction**: EXIF, PDF, Office document metadata
+- **Certificate Transparency**: SSL/TLS certificate logs (crt.sh, Censys)
+- **Code Repository Search**: GitHub, GitLab, Bitbucket, secrets detection
+- **Advanced Geolocation**: IP, phone, address geolocation
+- **Social Analytics**: Advanced social media analysis, network mapping
+- **Dark Web Search**: Passive dark web search (clearnet access points only)
 
 ### Documentation
 - See [IMPLEMENTATION_SUMMARY.md](IMPLEMENTATION_SUMMARY.md) for detailed module documentation
