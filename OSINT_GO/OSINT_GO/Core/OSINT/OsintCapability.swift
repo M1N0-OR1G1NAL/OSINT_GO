@@ -22,4 +22,10 @@ enum OsintCapability: String, CaseIterable {
     case icoLookup = "IČO Lookup"
     case personSearch = "Vyhledávání osoby"
     case socialMediaSearch = "Social Media"
+    case addressLookup = "Vyhledávání adresy"
+    case geocoding = "Geokódování"
+    case propertyData = "Nemovitostní data"
+    case breachCheck = "Kontrola úniku dat"
+    case credentialSearch = "Vyhledávání přihlašovacích údajů"
+    case pasteSearch = "Vyhledávání paste"
 }

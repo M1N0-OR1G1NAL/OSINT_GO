@@ -91,14 +91,74 @@ struct EmailModule: OsintModule {
     
     private func generateSearchQueries(_ email: String) -> [String: String] {
         let encoded = email.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? email
+        let domain = email.split(separator: "@").last.map { String($0) } ?? ""
         
         return [
+            // 1. General Search
             "Google": "https://www.google.com/search?q=\"\(encoded)\"",
+            
+            // 2. Developer Platforms
             "GitHub": "https://github.com/search?q=\"\(encoded)\"&type=users",
+            "GitLab": "https://gitlab.com/search?search=\"\(encoded)\"",
+            "StackOverflow": "https://stackoverflow.com/search?q=\"\(encoded)\"",
+            "CodePen": "https://codepen.io/search/pens?q=\"\(encoded)\"",
+            
+            // 3. Social Networks
+            "Facebook": "https://www.facebook.com/search/people/?q=\(encoded)",
+            "Twitter/X": "https://twitter.com/search?q=\"\(encoded)\"",
+            "LinkedIn": "https://www.linkedin.com/search/results/people/?keywords=\(encoded)",
+            "Instagram": "https://www.instagram.com/explore/tags/\(encoded.replacingOccurrences(of: "@", with: "").replacingOccurrences(of: ".", with: ""))/",
+            "Reddit": "https://www.reddit.com/search/?q=\"\(encoded)\"",
+            
+            // 4. Data Breach Databases
+            "HaveIBeenPwned": "https://haveibeenpwned.com/account/\(encoded)",
+            "Dehashed": "https://dehashed.com/search?query=\(encoded)",
+            "LeakCheck": "https://leakcheck.io/search?query=\(encoded)",
+            "IntelligenceX": "https://intelx.io/?s=\(encoded)",
+            
+            // 5. Paste Sites
             "Pastebin": "https://www.google.com/search?q=site:pastebin.com+\"\(encoded)\"",
-            "Sociální sítě": "https://www.google.com/search?q=site:facebook.com+OR+site:twitter.com+OR+site:linkedin.com+\"\(encoded)\"",
-            "Fóra a diskuze": "https://www.google.com/search?q=site:reddit.com+OR+site:*.forum.*+\"\(encoded)\"",
-            "Data breaches": "https://www.google.com/search?q=\"\(encoded)\"+\"data+breach\"+OR+\"leaked\""
+            "GitHub Gists": "https://gist.github.com/search?q=\"\(encoded)\"",
+            "Ghostbin": "https://www.google.com/search?q=site:ghostbin.com+\"\(encoded)\"",
+            
+            // 6. Forums & Communities
+            "Reddit Search": "https://www.google.com/search?q=site:reddit.com+\"\(encoded)\"",
+            "Quora": "https://www.quora.com/search?q=\"\(encoded)\"",
+            "Hacker News": "https://hn.algolia.com/?q=\"\(encoded)\"",
+            
+            // 7. Email Verification Services
+            "Hunter.io": "https://hunter.io/search/\(domain)",
+            "EmailRep": "https://emailrep.io/\(encoded)",
+            "Email Checker": "Use email validation APIs",
+            
+            // 8. Business & Professional
+            "Crunchbase": "https://www.crunchbase.com/textsearch?q=\"\(encoded)\"",
+            "AngelList": "https://angel.co/search?q=\"\(encoded)\"",
+            "Glassdoor": "https://www.glassdoor.com/Search/results.htm?keyword=\"\(encoded)\"",
+            
+            // 9. Academic & Research
+            "Google Scholar": "https://scholar.google.com/scholar?q=\"\(encoded)\"",
+            "ResearchGate": "https://www.researchgate.net/search?q=\"\(encoded)\"",
+            "Academia.edu": "https://www.academia.edu/search?q=\"\(encoded)\"",
+            
+            // 10. Additional Sources
+            "Gravatar": "https://en.gravatar.com/\(encoded.replacingOccurrences(of: "@", with: "").replacingOccurrences(of: ".", with: ""))",
+            "Skype Resolver": "Search for email in Skype directory",
+            "VirusTotal": "https://www.virustotal.com/gui/search/\(encoded)",
+            "Shodan": "https://www.shodan.io/search?query=\"\(encoded)\"",
+            
+            // 11. Archive & Historical
+            "Wayback Machine": "https://web.archive.org/web/*/\(domain)",
+            "Archive.today": "https://archive.fo/\(domain)",
+            
+            // 12. Reverse Email Lookup
+            "TrueCaller": "Use TrueCaller app for reverse lookup",
+            "Pipl": "https://pipl.com/search/?q=\"\(encoded)\"",
+            "Spokeo": "https://www.spokeo.com/email-search?q=\"\(encoded)\"",
+            
+            // 13. Czech-specific
+            "Seznam Email": "Zkontrolujte Seznam.cz email databázi",
+            "Czech Forums": "https://www.google.com/search?q=site:.cz+\"\(encoded)\""
         ]
     }
 }
