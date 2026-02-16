@@ -18,9 +18,10 @@ struct GeolocationModule: OsintModule {
         var riskScore: Double = 0.0
         
         let value = target.value.trimmingCharacters(in: .whitespaces)
+        let targetType = TargetType(rawValue: target.type)
         
         // Generate geolocation search queries
-        let queries = generateGeolocationQueries(value, type: target.type)
+        let queries = generateGeolocationQueries(value, type: targetType)
         details["vyhledávací_dotazy"] = queries
             .map { "\($0.key): \($0.value)" }
             .joined(separator: "\n")
@@ -57,20 +58,18 @@ struct GeolocationModule: OsintModule {
         )
     }
     
-    private func generateGeolocationQueries(_ value: String, type: String) -> [String: String] {
+    private func generateGeolocationQueries(_ value: String, type: TargetType?) -> [String: String] {
         let encoded = value.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? value
         var queries: [String: String] = [:]
         
-        let targetType = TargetType(rawValue: type)
-        
-        if targetType == .ipAddress {
+        if type == .ipAddress {
             queries["IPinfo"] = "https://ipinfo.io/\(value)"
             queries["IP2Location"] = "https://www.ip2location.com/demo/\(value)"
             queries["MaxMind"] = "https://www.maxmind.com/en/geoip-demo"
             queries["Shodan"] = "https://www.shodan.io/host/\(value)"
         }
         
-        if targetType == .phone {
+        if type == .phone {
             queries["PhoneInfoga"] = "https://www.google.com/search?q=phoneinfoga+\(encoded)"
             queries["Truecaller"] = "https://www.truecaller.com/search/\(encoded)"
         }

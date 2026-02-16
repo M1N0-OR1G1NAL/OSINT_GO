@@ -60,7 +60,7 @@ struct CertificateModule: OsintModule {
         
         return [
             "crt.sh": "https://crt.sh/?q=\(encoded)",
-            "crt.sh (wildcards)": "https://crt.sh/?q=%.%\(encoded)",
+            "crt.sh (wildcards)": "https://crt.sh/?q=%25.%25.\(domain)",
             "Censys": "https://search.censys.io/certificates?q=\(encoded)",
             "SSLMate": "https://certspotter.com/api/v0/certs?domain=\(domain)",
             "VirusTotal": "https://www.virustotal.com/gui/domain/\(domain)/details",
