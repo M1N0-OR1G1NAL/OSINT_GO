@@ -71,7 +71,7 @@ struct GeolocationModule: OsintModule {
         }
         
         if targetType == .phone {
-            queries["PhoneInfoga"] = "https://www.google.com/search?q=phoneinfoга+\(encoded)"
+            queries["PhoneInfoga"] = "https://www.google.com/search?q=phoneinfoga+\(encoded)"
             queries["Truecaller"] = "https://www.truecaller.com/search/\(encoded)"
         }
         
