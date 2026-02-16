@@ -12,9 +12,9 @@ struct SocialMediaModule: OsintModule {
     let name = "Social Media OSINT"
     let capabilities: [OsintCapability] = [.socialMediaSearch]
     let supportedTypes: [TargetType] = [.username, .email, .personName, .phone]
-    
+
     func execute(on target: Target, context: OsintContext) async throws -> ModuleResult {
-        var details: [String: Any] = [:]
+        var details: [String: String] = [:]
         var riskScore: Double = 0.0
         
         let value = target.value.trimmingCharacters(in: .whitespaces)
@@ -23,26 +23,26 @@ struct SocialMediaModule: OsintModule {
         // Generate queries based on target type
         switch targetType {
         case .username:
-            details["username_queries"] = generateUsernameQueries(value)
+            details["username_queries"] = stringify(generateUsernameQueries(value))
         case .email:
-            details["email_queries"] = generateEmailQueries(value)
+            details["email_queries"] = stringify(generateEmailQueries(value))
         case .personName:
-            details["person_queries"] = generatePersonQueries(value)
+            details["person_queries"] = stringify(generatePersonQueries(value))
         case .phone:
-            details["phone_queries"] = generatePhoneQueries(value)
+            details["phone_queries"] = stringify(generatePhoneQueries(value))
         default:
-            details["generic_queries"] = generateGenericQueries(value)
+            details["generic_queries"] = stringify(generateGenericQueries(value))
         }
         
         // Platform-specific search strategies
-        details["facebook"] = getFacebookSearchStrategies(value)
-        details["instagram"] = getInstagramSearchStrategies(value)
-        details["tiktok"] = getTikTokSearchStrategies(value)
-        details["twitter"] = getTwitterSearchStrategies(value)
-        details["linkedin"] = getLinkedInSearchStrategies(value)
-        
+        details["facebook"] = stringify(getFacebookSearchStrategies(value))
+        details["instagram"] = stringify(getInstagramSearchStrategies(value))
+        details["tiktok"] = stringify(getTikTokSearchStrategies(value))
+        details["twitter"] = stringify(getTwitterSearchStrategies(value))
+        details["linkedin"] = stringify(getLinkedInSearchStrategies(value))
+
         // Advanced OSINT techniques
-        details["advanced_techniques"] = getAdvancedTechniques(value)
+        details["advanced_techniques"] = stringify(getAdvancedTechniques(value))
         
         riskScore = 0.2
         
@@ -190,5 +190,9 @@ struct SocialMediaModule: OsintModule {
             "Reverse Image Search": "Google Images, TinEye, Yandex Images",
             "Legal Note": "Always follow platform ToS and local privacy laws"
         ]
+    }
+
+    private func stringify(_ value: Any) -> String {
+        return ModuleResult.detailString(from: value)
     }
 }

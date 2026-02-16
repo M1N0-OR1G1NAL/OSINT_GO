@@ -12,9 +12,9 @@ struct CompanyModule: OsintModule {
     let name = "Company/IČO OSINT"
     let capabilities: [OsintCapability] = [.companyLookup, .icoLookup]
     let supportedTypes: [TargetType] = [.company, .ico]
-    
+
     func execute(on target: Target, context: OsintContext) async throws -> ModuleResult {
-        var details: [String: Any] = [:]
+        var details: [String: String] = [:]
         var riskScore: Double = 0.0
         
         let value = target.value.trimmingCharacters(in: .whitespaces)
@@ -22,22 +22,24 @@ struct CompanyModule: OsintModule {
         if TargetType(rawValue: target.type) == .ico {
             // IČO lookup
             let isValid = validateICO(value)
-            details["validní_IČO"] = isValid
+            details["validní_IČO"] = isValid ? "true" : "false"
             
             if isValid {
                 // Try to fetch company info from ARES
                 do {
                     let companyInfo = try await lookupARES(ico: value, context: context)
-                    details["firma"] = companyInfo
+                    details["firma"] = ModuleResult.detailString(from: companyInfo)
                     riskScore = 0.2
                 } catch {
                     details["chyba"] = "Nepodařilo se získat údaje z ARES: \(error.localizedDescription)"
                     riskScore = 0.4
                 }
-                
+
                 // Generate search queries
                 let queries = generateICOSearchQueries(value)
                 details["vyhledávací_dotazy"] = queries
+                    .map { "\($0.key): \($0.value)" }
+                    .joined(separator: "\n")
             } else {
                 details["chyba"] = "Neplatný formát IČO"
                 riskScore = 0.7
@@ -46,6 +48,8 @@ struct CompanyModule: OsintModule {
             // Company name lookup
             let queries = generateCompanySearchQueries(value)
             details["vyhledávací_dotazy"] = queries
+                .map { "\($0.key): \($0.value)" }
+                .joined(separator: "\n")
             riskScore = 0.3
         }
         

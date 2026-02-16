@@ -49,12 +49,20 @@ class OsintOrchestrator {
         }
         
         // Calculate overall risk score
-        let totalRisk = investigation.targets.reduce(0) { total, target in
-            total + target.results.reduce(0) { $0 + $1.riskScore }
-        } / Double(investigation.targets.reduce(0, { $0 + $1.results.count }))
-        
-        await MainActor.run {
-            investigation.riskScore = totalRisk
+        let totalResultCount = investigation.targets.reduce(0) { $0 + $1.results.count }
+
+        if totalResultCount > 0 {
+            let totalRisk = investigation.targets.reduce(0) { total, target in
+                total + target.results.reduce(0) { $0 + $1.riskScore }
+            } / Double(totalResultCount)
+
+            await MainActor.run {
+                investigation.riskScore = totalRisk
+            }
+        } else {
+            await MainActor.run {
+                investigation.riskScore = 0
+            }
         }
     }
 }

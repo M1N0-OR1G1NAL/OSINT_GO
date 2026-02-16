@@ -15,35 +15,40 @@ struct PhoneModule: OsintModule {
     
     // Czech mobile prefixes
     private let czechMobilePrefixes = ["42060", "42070", "42072", "42073", "42077", "42079"]
-    
+
     func execute(on target: Target, context: OsintContext) async throws -> ModuleResult {
-        var details: [String: Any] = [:]
+        var details: [String: String] = [:]
         var riskScore: Double = 0.0
-        
+
         let phoneNumber = target.value.replacingOccurrences(of: " ", with: "")
-        
+
         // Basic validation
         let isValid = validatePhoneFormat(phoneNumber)
-        details["validní_formát"] = isValid
-        
+        details["validní_formát"] = isValid ? "true" : "false"
+
         if isValid {
             // Extract country code and number info
             let info = extractPhoneInfo(phoneNumber)
             details["země"] = info.country
             details["region"] = info.region
             details["typ"] = info.type
-            
+
             // Formats
-            details["formáty"] = [
+            let formats = [
                 "E.164": formatE164(phoneNumber),
                 "mezinárodní": formatInternational(phoneNumber),
                 "národní": formatNational(phoneNumber)
             ]
-            
+            details["formáty"] = formats
+                .map { "\($0.key): \($0.value)" }
+                .joined(separator: "\n")
+
             // Generate search queries
             let queries = generateSearchQueries(phoneNumber)
             details["vyhledávací_dotazy"] = queries
-            
+                .map { "\($0.key): \($0.value)" }
+                .joined(separator: "\n")
+
             riskScore = 0.1
         } else {
             details["chyba"] = "Neplatný formát telefonního čísla"
