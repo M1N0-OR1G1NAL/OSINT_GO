@@ -42,6 +42,8 @@ struct CameraScanResult {
     let label: String
 }
 
+private let phoneRegexPattern = "^[+]?[0-9][\\s\\-\\.0-9]{6,18}$"
+
 // MARK: - Main view
 
 struct CameraScanView: View {
@@ -193,8 +195,7 @@ struct CameraScanView: View {
     private func inferTargetType(from value: String) -> TargetType {
         if value.hasPrefix("http://") || value.hasPrefix("https://") { return .url }
         if value.contains("@") && value.contains(".") { return .email }
-        let phonePattern = "^[+]?[0-9][\\s\\-\\.0-9]{6,18}$"
-        if let regex = try? NSRegularExpression(pattern: phonePattern),
+        if let regex = try? NSRegularExpression(pattern: phoneRegexPattern),
            regex.firstMatch(in: value, range: NSRange(value.startIndex..., in: value)) != nil {
             return .phone
         }
@@ -202,9 +203,7 @@ struct CameraScanView: View {
     }
 }
 
-// MARK: - QR / Barcode / Text scanner (VisionKit, iOS 16+)
-
-@available(iOS 16.0, *)
+// MARK: - QR / Barcode / Text scanner (VisionKit, iOS 16+)@available(iOS 16.0, *)
 private struct QRTextScannerView: UIViewControllerRepresentable {
     let mode: CameraScanMode
     let onDetected: (String) -> Void
@@ -268,6 +267,8 @@ private struct QRTextScannerView: UIViewControllerRepresentable {
 // MARK: - Face detection camera (Vision + AVFoundation)
 
 private struct FaceCameraView: UIViewControllerRepresentable {
+    typealias Coordinator = Void
+
     let onFaceDetected: () -> Void
     let onPermissionDenied: () -> Void
 
@@ -279,7 +280,6 @@ private struct FaceCameraView: UIViewControllerRepresentable {
     }
 
     func updateUIViewController(_ uiViewController: FaceCameraViewController, context: Context) {}
-    func makeCoordinator() {}
 }
 
 private final class FaceCameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
