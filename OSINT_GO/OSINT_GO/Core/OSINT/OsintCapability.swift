@@ -35,4 +35,6 @@ enum OsintCapability: String, CaseIterable {
     case socialAnalytics = "Social Analytics"
     case reverseImageSearch = "Reverse Image Search"
     case advancedGeolocation = "Advanced Geolocation"
+    case cameraRecognition = "Camera Recognition"
+    case faceDetection = "Face Detection"
 }

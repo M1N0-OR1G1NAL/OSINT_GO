@@ -22,6 +22,7 @@ enum TargetType: String, CaseIterable, Identifiable, Codable {
     case url = "URL"
     case document = "Dokument"
     case device = "Zařízení"
+    case face = "Obličej (kamera)"
     
     var id: String { rawValue }
     
@@ -39,6 +40,7 @@ enum TargetType: String, CaseIterable, Identifiable, Codable {
         case .url: return "link"
         case .document: return "doc"
         case .device: return "iphone"
+        case .face: return "face.dashed"
         }
     }
 }
