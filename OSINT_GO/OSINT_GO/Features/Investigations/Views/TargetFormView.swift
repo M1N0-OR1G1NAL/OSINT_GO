@@ -11,11 +11,12 @@ import SwiftUI
 struct TargetFormView: View {
     @Binding var targets: [Target]
     @Environment(\.dismiss) private var dismiss
-    
+
     @State private var selectedType: TargetType = .domain
     @State private var value = ""
     @State private var label = ""
-    
+    @State private var showingCameraScanner = false
+
     var body: some View {
         NavigationView {
             Form {
@@ -27,9 +28,20 @@ struct TargetFormView: View {
                         }
                     }
                 }
-                
+
                 TextField("Hodnota (např. example.com)", text: $value)
                 TextField("Popisek (volitelný)", text: $label)
+
+                Section {
+                    Button {
+                        showingCameraScanner = true
+                    } label: {
+                        Label("Skenovat kamerou", systemImage: "camera.viewfinder")
+                    }
+                } footer: {
+                    Text("Detekuje obličeje, QR kódy, čárové kódy a text. Vše zpracováno lokálně.")
+                        .font(.caption)
+                }
             }
             .navigationTitle("Nový Target")
             .toolbar {
@@ -43,9 +55,16 @@ struct TargetFormView: View {
                     .disabled(value.trimmingCharacters(in: .whitespaces).isEmpty)
                 }
             }
+            .sheet(isPresented: $showingCameraScanner) {
+                CameraScanView { result in
+                    selectedType = result.type
+                    value = result.value
+                    label = result.label
+                }
+            }
         }
     }
-    
+
     private func addTarget() {
         let newTarget = Target(type: selectedType, value: value.trimmingCharacters(in: .whitespaces), label: label)
         targets.append(newTarget)

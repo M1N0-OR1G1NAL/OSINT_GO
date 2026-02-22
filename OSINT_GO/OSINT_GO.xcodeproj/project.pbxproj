@@ -47,6 +47,35 @@
 		8EB6D52F2EE658B6001A6EA5 /* InvestigationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6D52E2EE658B6001A6EA5 /* InvestigationsView.swift */; };
 		8EB6D5312EE658E9001A6EA5 /* ModulesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6D5302EE658E9001A6EA5 /* ModulesView.swift */; };
 		8EB6D5332EE65970001A6EA5 /* InvestigationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6D5322EE65970001A6EA5 /* InvestigationDetailView.swift */; };
+		45468746B538464C9BB068A7 /* GraphData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495BDF51CA34F69B92E6569 /* GraphData.swift */; };
+		5609B323601543CABBCDF2CB /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55971CE71274923B1AF154F /* Note.swift */; };
+		D39F2F00FA8F49F09A8F174F /* OsintModule+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595FD594C66C469797577527 /* OsintModule+Extensions.swift */; };
+		BD3A0019FEE94F4C8A66E457 /* OsintSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40AF37FBDE75434192D71141 /* OsintSettings.swift */; };
+		E26333ED856442BBB4486385 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33556DEB76A4D9FB749FD01 /* CacheManager.swift */; };
+		29FC7D9A35D14959BB520162 /* ImportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B12ABA56D24CE89E43BDAD /* ImportService.swift */; };
+		2777C8DD5F39419E9419A6E7 /* NotesTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655A2AD1446E4F4EBC493E56 /* NotesTabView.swift */; };
+		A0A2BDE98EB84EA796ADC1CB /* ResultsTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B4F710C34A4AF39969C878 /* ResultsTabView.swift */; };
+		F102AE037DD8426C8BA907DD /* AIAPIConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93E014FCF994283B06280E3 /* AIAPIConfigView.swift */; };
+		2A4C98FB45924BC58D72FCC7 /* ExportHelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0C78E13A06482CB6E751BE /* ExportHelpView.swift */; };
+		BE3667480E4B4A3B90C6A439 /* SubscriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692A245A08FD40D8A3D8B674 /* SubscriptionView.swift */; };
+		69A62E90FD5A445894879B57 /* TermsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A7FC8D4A1C4B1699E19994 /* TermsView.swift */; };
+		EB1D12B75E654DD09974E929 /* BreachModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = A833348A145841D8889A3CD1 /* BreachModule.swift */; };
+		0FE6018F61A347DE8004F0D9 /* CertificateModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E3CE4F8D614917BE9489EB /* CertificateModule.swift */; };
+		F2DBA2BE61EA4ABE9CF65BEB /* CompanyModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DB49081658470F91DD7930 /* CompanyModule.swift */; };
+		046B7F40779D4E8C9AC1D0CC /* DarkWebModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B44AD1B8F044A80B21E3062 /* DarkWebModule.swift */; };
+		A3C3F69DFA564EE687497A45 /* EmailModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C01DF47E584D4BBAFD5D56 /* EmailModule.swift */; };
+		0EB9005F46074826AB15CFE5 /* GeolocationModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A39AE5B198047BEAAAE7970 /* GeolocationModule.swift */; };
+		5AEDCA5E4A9C4D88860A2D02 /* MetadataModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FE6F31DE8B4F42B207E14B /* MetadataModule.swift */; };
+		AFCD1D97C78246B795D2589C /* PersonModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC019F073A6043A987628983 /* PersonModule.swift */; };
+		5A71E3AFE2C74138B1B9746D /* PhoneModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61F6E28F78143449656CA9C /* PhoneModule.swift */; };
+		E9DD5DE587124972BA89622C /* RepositoryModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAC06839FA64CBCAE4600B1 /* RepositoryModule.swift */; };
+		F2ADC4B7E5764AB0800EA2F1 /* SocialAnalyticsModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A53768AEA5943FE90722EDC /* SocialAnalyticsModule.swift */; };
+		2DBAE5BFBEEC471E97B1E891 /* SocialMediaModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B79B38765F43CC98805D87 /* SocialMediaModule.swift */; };
+		2092EFF4B5644E7393309C4B /* SubdomainModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FA7BAF87EF4428BC748E9F /* SubdomainModule.swift */; };
+		46EEFFDABACB47A086201930 /* UsernameModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = D12E3589D7554D3480800A93 /* UsernameModule.swift */; };
+		801FABA6EAE4460FACFC69E7 /* CameraRecognitionModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9E7D488C0249ABBC88DBC8 /* CameraRecognitionModule.swift */; };
+		347DA83EAF734DB9978DCA9B /* CameraScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6201C97E83478CB974407B /* CameraScanView.swift */; };
+		B48754E952254EFD8F97A879 /* LocalizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF77A4719D4159BDC52CE9 /* LocalizationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -91,6 +120,35 @@
 		8EB6D52E2EE658B6001A6EA5 /* InvestigationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestigationsView.swift; sourceTree = "<group>"; };
 		8EB6D5302EE658E9001A6EA5 /* ModulesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModulesView.swift; sourceTree = "<group>"; };
 		8EB6D5322EE65970001A6EA5 /* InvestigationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestigationDetailView.swift; sourceTree = "<group>"; };
+		1495BDF51CA34F69B92E6569 /* GraphData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphData.swift; sourceTree = "<group>"; };
+		A55971CE71274923B1AF154F /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		595FD594C66C469797577527 /* OsintModule+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OsintModule+Extensions.swift; sourceTree = "<group>"; };
+		40AF37FBDE75434192D71141 /* OsintSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OsintSettings.swift; sourceTree = "<group>"; };
+		A33556DEB76A4D9FB749FD01 /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
+		E7B12ABA56D24CE89E43BDAD /* ImportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportService.swift; sourceTree = "<group>"; };
+		655A2AD1446E4F4EBC493E56 /* NotesTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesTabView.swift; sourceTree = "<group>"; };
+		A5B4F710C34A4AF39969C878 /* ResultsTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsTabView.swift; sourceTree = "<group>"; };
+		F93E014FCF994283B06280E3 /* AIAPIConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIAPIConfigView.swift; sourceTree = "<group>"; };
+		CA0C78E13A06482CB6E751BE /* ExportHelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportHelpView.swift; sourceTree = "<group>"; };
+		692A245A08FD40D8A3D8B674 /* SubscriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionView.swift; sourceTree = "<group>"; };
+		03A7FC8D4A1C4B1699E19994 /* TermsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsView.swift; sourceTree = "<group>"; };
+		A833348A145841D8889A3CD1 /* BreachModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreachModule.swift; sourceTree = "<group>"; };
+		20E3CE4F8D614917BE9489EB /* CertificateModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificateModule.swift; sourceTree = "<group>"; };
+		B6DB49081658470F91DD7930 /* CompanyModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyModule.swift; sourceTree = "<group>"; };
+		0B44AD1B8F044A80B21E3062 /* DarkWebModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkWebModule.swift; sourceTree = "<group>"; };
+		83C01DF47E584D4BBAFD5D56 /* EmailModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailModule.swift; sourceTree = "<group>"; };
+		0A39AE5B198047BEAAAE7970 /* GeolocationModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeolocationModule.swift; sourceTree = "<group>"; };
+		92FE6F31DE8B4F42B207E14B /* MetadataModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetadataModule.swift; sourceTree = "<group>"; };
+		FC019F073A6043A987628983 /* PersonModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonModule.swift; sourceTree = "<group>"; };
+		F61F6E28F78143449656CA9C /* PhoneModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneModule.swift; sourceTree = "<group>"; };
+		CFAC06839FA64CBCAE4600B1 /* RepositoryModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryModule.swift; sourceTree = "<group>"; };
+		2A53768AEA5943FE90722EDC /* SocialAnalyticsModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialAnalyticsModule.swift; sourceTree = "<group>"; };
+		00B79B38765F43CC98805D87 /* SocialMediaModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialMediaModule.swift; sourceTree = "<group>"; };
+		11FA7BAF87EF4428BC748E9F /* SubdomainModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubdomainModule.swift; sourceTree = "<group>"; };
+		D12E3589D7554D3480800A93 /* UsernameModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsernameModule.swift; sourceTree = "<group>"; };
+		3E9E7D488C0249ABBC88DBC8 /* CameraRecognitionModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraRecognitionModule.swift; sourceTree = "<group>"; };
+		3F6201C97E83478CB974407B /* CameraScanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraScanView.swift; sourceTree = "<group>"; };
+		9CAF77A4719D4159BDC52CE9 /* LocalizationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +186,7 @@
 				8EB6D4D82EE64354001A6EA5 /* Features */,
 				8EB6D4C22EE64261001A6EA5 /* Core */,
 				8EB6D4BB2EE641E1001A6EA5 /* App */,
+				GRP_RESRC_01 /* Resources */,
 			);
 			path = OSINT_GO;
 			sourceTree = SOURCE_ROOT;
@@ -161,6 +220,8 @@
 				8EB6D4C82EE642C0001A6EA5 /* Investigation.swift */,
 				8EB6D4C62EE642B2001A6EA5 /* Target.swift */,
 				8EB6D4C42EE6429C001A6EA5 /* TargetType.swift */,
+				1495BDF51CA34F69B92E6569 /* GraphData.swift */,
+				A55971CE71274923B1AF154F /* Note.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -173,6 +234,8 @@
 				8EB6D4D12EE6430D001A6EA5 /* OsintContext.swift */,
 				8EB6D4CF2EE64300001A6EA5 /* OsintModule.swift */,
 				8EB6D4CD2EE642ED001A6EA5 /* OsintCapability.swift */,
+				595FD594C66C469797577527 /* OsintModule+Extensions.swift */,
+				40AF37FBDE75434192D71141 /* OsintSettings.swift */,
 			);
 			path = OSINT;
 			sourceTree = "<group>";
@@ -183,6 +246,8 @@
 				8EB6D5192EE64A85001A6EA5 /* ExportService.swift */,
 				8EB6D4FE2EE64820001A6EA5 /* HTTPClient.swift */,
 				8EB6D4D62EE6433A001A6EA5 /* PersistenceController.swift */,
+				A33556DEB76A4D9FB749FD01 /* CacheManager.swift */,
+				E7B12ABA56D24CE89E43BDAD /* ImportService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -194,8 +259,25 @@
 				8EB6D5002EE648C4001A6EA5 /* DeviceSecurity */,
 				8EB6D4E12EE6457E001A6EA5 /* ModulesBrowser */,
 				8EB6D4D92EE64365001A6EA5 /* Investigations */,
+				GRP_CAMSCAN0 /* CameraScanner */,
 			);
 			path = Features;
+			sourceTree = "<group>";
+		};
+		GRP_CAMSCAN0 /* CameraScanner */ = {
+			isa = PBXGroup;
+			children = (
+				GRP_CAMSCAN1 /* Views */,
+			);
+			path = CameraScanner;
+			sourceTree = "<group>";
+		};
+		GRP_CAMSCAN1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3F6201C97E83478CB974407B /* CameraScanView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		8EB6D4D92EE64365001A6EA5 /* Investigations */ = {
@@ -217,6 +299,8 @@
 				8EB6D4F92EE647AB001A6EA5 /* TimelineTabView.swift */,
 				8EB6D4F72EE64798001A6EA5 /* TargetsTabView.swift */,
 				8EB6D4F32EE64755001A6EA5 /* NewInvestigationView.swift */,
+				655A2AD1446E4F4EBC493E56 /* NotesTabView.swift */,
+				A5B4F710C34A4AF39969C878 /* ResultsTabView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -225,8 +309,143 @@
 			isa = PBXGroup;
 			children = (
 				8EB6D4DE2EE643B1001A6EA5 /* DomainIp */,
+				GRP_BREACH_0001 /* Breach */,
+				GRP_CERT_00001 /* Certificate */,
+				GRP_COMPANY001 /* Company */,
+				GRP_DARKWEB01 /* DarkWeb */,
+				GRP_EMAIL_001 /* Email */,
+				GRP_GEOLOC01 /* Geolocation */,
+				GRP_METADATA1 /* Metadata */,
+				GRP_PERSON001 /* Person */,
+				GRP_PHONE_01 /* Phone */,
+				GRP_REPO_001 /* Repository */,
+				GRP_SOCANA01 /* SocialAnalytics */,
+				GRP_SOCMED01 /* SocialMedia */,
+				GRP_SUBDM001 /* Subdomain */,
+				GRP_USRNAM01 /* Username */,
+				GRP_CAMREC01 /* CameraRecognition */,
 			);
 			path = Modules;
+			sourceTree = "<group>";
+		};
+		GRP_BREACH_0001 /* Breach */ = {
+			isa = PBXGroup;
+			children = (
+				A833348A145841D8889A3CD1 /* BreachModule.swift */,
+			);
+			path = Breach;
+			sourceTree = "<group>";
+		};
+		GRP_CERT_00001 /* Certificate */ = {
+			isa = PBXGroup;
+			children = (
+				20E3CE4F8D614917BE9489EB /* CertificateModule.swift */,
+			);
+			path = Certificate;
+			sourceTree = "<group>";
+		};
+		GRP_COMPANY001 /* Company */ = {
+			isa = PBXGroup;
+			children = (
+				B6DB49081658470F91DD7930 /* CompanyModule.swift */,
+			);
+			path = Company;
+			sourceTree = "<group>";
+		};
+		GRP_DARKWEB01 /* DarkWeb */ = {
+			isa = PBXGroup;
+			children = (
+				0B44AD1B8F044A80B21E3062 /* DarkWebModule.swift */,
+			);
+			path = DarkWeb;
+			sourceTree = "<group>";
+		};
+		GRP_EMAIL_001 /* Email */ = {
+			isa = PBXGroup;
+			children = (
+				83C01DF47E584D4BBAFD5D56 /* EmailModule.swift */,
+			);
+			path = Email;
+			sourceTree = "<group>";
+		};
+		GRP_GEOLOC01 /* Geolocation */ = {
+			isa = PBXGroup;
+			children = (
+				0A39AE5B198047BEAAAE7970 /* GeolocationModule.swift */,
+			);
+			path = Geolocation;
+			sourceTree = "<group>";
+		};
+		GRP_METADATA1 /* Metadata */ = {
+			isa = PBXGroup;
+			children = (
+				92FE6F31DE8B4F42B207E14B /* MetadataModule.swift */,
+			);
+			path = Metadata;
+			sourceTree = "<group>";
+		};
+		GRP_PERSON001 /* Person */ = {
+			isa = PBXGroup;
+			children = (
+				FC019F073A6043A987628983 /* PersonModule.swift */,
+			);
+			path = Person;
+			sourceTree = "<group>";
+		};
+		GRP_PHONE_01 /* Phone */ = {
+			isa = PBXGroup;
+			children = (
+				F61F6E28F78143449656CA9C /* PhoneModule.swift */,
+			);
+			path = Phone;
+			sourceTree = "<group>";
+		};
+		GRP_REPO_001 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				CFAC06839FA64CBCAE4600B1 /* RepositoryModule.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		GRP_SOCANA01 /* SocialAnalytics */ = {
+			isa = PBXGroup;
+			children = (
+				2A53768AEA5943FE90722EDC /* SocialAnalyticsModule.swift */,
+			);
+			path = SocialAnalytics;
+			sourceTree = "<group>";
+		};
+		GRP_SOCMED01 /* SocialMedia */ = {
+			isa = PBXGroup;
+			children = (
+				00B79B38765F43CC98805D87 /* SocialMediaModule.swift */,
+			);
+			path = SocialMedia;
+			sourceTree = "<group>";
+		};
+		GRP_SUBDM001 /* Subdomain */ = {
+			isa = PBXGroup;
+			children = (
+				11FA7BAF87EF4428BC748E9F /* SubdomainModule.swift */,
+			);
+			path = Subdomain;
+			sourceTree = "<group>";
+		};
+		GRP_USRNAM01 /* Username */ = {
+			isa = PBXGroup;
+			children = (
+				D12E3589D7554D3480800A93 /* UsernameModule.swift */,
+			);
+			path = Username;
+			sourceTree = "<group>";
+		};
+		GRP_CAMREC01 /* CameraRecognition */ = {
+			isa = PBXGroup;
+			children = (
+				3E9E7D488C0249ABBC88DBC8 /* CameraRecognitionModule.swift */,
+			);
+			path = CameraRecognition;
 			sourceTree = "<group>";
 		};
 		8EB6D4DE2EE643B1001A6EA5 /* DomainIp */ = {
@@ -324,6 +543,10 @@
 				8EB6D5152EE64A5B001A6EA5 /* AppInfoView.swift */,
 				8EB6D5132EE64A4A001A6EA5 /* LegalEthicsView.swift */,
 				8EB6D5112EE64A3B001A6EA5 /* SettingsView.swift */,
+				F93E014FCF994283B06280E3 /* AIAPIConfigView.swift */,
+				CA0C78E13A06482CB6E751BE /* ExportHelpView.swift */,
+				692A245A08FD40D8A3D8B674 /* SubscriptionView.swift */,
+				03A7FC8D4A1C4B1699E19994 /* TermsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -334,6 +557,22 @@
 				8EB6D52A2EE6511E001A6EA5 /* PersistenceController.swift */,
 			);
 			path = DataStore;
+			sourceTree = "<group>";
+		};
+		GRP_RESRC_01 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				GRP_LOCMGR01 /* Localization */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		GRP_LOCMGR01 /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				9CAF77A4719D4159BDC52CE9 /* LocalizationManager.swift */,
+			);
+			path = Localization;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -447,6 +686,35 @@
 				8EB6D52F2EE658B6001A6EA5 /* InvestigationsView.swift in Sources */,
 				8EB6D4D22EE6430D001A6EA5 /* OsintContext.swift in Sources */,
 				8EB6D52B2EE6511E001A6EA5 /* PersistenceController.swift in Sources */,
+				45468746B538464C9BB068A7 /* GraphData.swift in Sources */,
+				5609B323601543CABBCDF2CB /* Note.swift in Sources */,
+				D39F2F00FA8F49F09A8F174F /* OsintModule+Extensions.swift in Sources */,
+				BD3A0019FEE94F4C8A66E457 /* OsintSettings.swift in Sources */,
+				E26333ED856442BBB4486385 /* CacheManager.swift in Sources */,
+				29FC7D9A35D14959BB520162 /* ImportService.swift in Sources */,
+				2777C8DD5F39419E9419A6E7 /* NotesTabView.swift in Sources */,
+				A0A2BDE98EB84EA796ADC1CB /* ResultsTabView.swift in Sources */,
+				F102AE037DD8426C8BA907DD /* AIAPIConfigView.swift in Sources */,
+				2A4C98FB45924BC58D72FCC7 /* ExportHelpView.swift in Sources */,
+				BE3667480E4B4A3B90C6A439 /* SubscriptionView.swift in Sources */,
+				69A62E90FD5A445894879B57 /* TermsView.swift in Sources */,
+				EB1D12B75E654DD09974E929 /* BreachModule.swift in Sources */,
+				0FE6018F61A347DE8004F0D9 /* CertificateModule.swift in Sources */,
+				F2DBA2BE61EA4ABE9CF65BEB /* CompanyModule.swift in Sources */,
+				046B7F40779D4E8C9AC1D0CC /* DarkWebModule.swift in Sources */,
+				A3C3F69DFA564EE687497A45 /* EmailModule.swift in Sources */,
+				0EB9005F46074826AB15CFE5 /* GeolocationModule.swift in Sources */,
+				5AEDCA5E4A9C4D88860A2D02 /* MetadataModule.swift in Sources */,
+				AFCD1D97C78246B795D2589C /* PersonModule.swift in Sources */,
+				5A71E3AFE2C74138B1B9746D /* PhoneModule.swift in Sources */,
+				E9DD5DE587124972BA89622C /* RepositoryModule.swift in Sources */,
+				F2ADC4B7E5764AB0800EA2F1 /* SocialAnalyticsModule.swift in Sources */,
+				2DBAE5BFBEEC471E97B1E891 /* SocialMediaModule.swift in Sources */,
+				2092EFF4B5644E7393309C4B /* SubdomainModule.swift in Sources */,
+				46EEFFDABACB47A086201930 /* UsernameModule.swift in Sources */,
+				801FABA6EAE4460FACFC69E7 /* CameraRecognitionModule.swift in Sources */,
+				347DA83EAF734DB9978DCA9B /* CameraScanView.swift in Sources */,
+				B48754E952254EFD8F97A879 /* LocalizationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,6 +738,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Pro skenování cílů (obličeje, QR kódy, text) je potřeba přístup ke kameře. Veškeré zpracování probíhá lokálně.";
 				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -505,6 +774,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Pro skenování cílů (obličeje, QR kódy, text) je potřeba přístup ke kameře. Veškeré zpracování probíhá lokálně.";
 				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -30,7 +30,8 @@ extension OsintModule {
             RepositoryModule(),
             GeolocationModule(),
             SocialAnalyticsModule(),
-            DarkWebModule()
+            DarkWebModule(),
+            CameraRecognitionModule()
         ]
     }
 }
